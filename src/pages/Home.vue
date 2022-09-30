@@ -1,29 +1,28 @@
 <template>
-    <div>
-        Home
-    </div>
+  <div>
+    <product-list></product-list>
+  </div>
 </template>
 
 <script>
+import ProductList from "@/components/ProductList.vue";
+
 export default {
-    name: 'home',
+  name: "home",
 
-    data() {
-        return {
-            
-        };
-    },
+  components: {
+    ProductList,
+  },
 
-    mounted() {
-        
-    },
+  data() {
+    return {};
+  },
 
-    methods: {
-        
-    },
+  mounted() {},
+
+  methods: {},
 };
 </script>
 
 <style scoped>
-
 </style>
