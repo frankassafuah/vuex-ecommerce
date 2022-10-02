@@ -12,7 +12,7 @@
       <div class="container">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" href="#"> Home</a>
+            <router-link to="/" class="nav-link active">Home</router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Products</a>

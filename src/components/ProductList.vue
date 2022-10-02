@@ -1,10 +1,6 @@
 <template>
   <div class="d-flex align-items-stretch flex-wrap">
-    <product-card/>
-    <product-card/>
-    <product-card/>
-    <product-card/>
-    <product-card/>
+    <product-card v-for="product in products" :key="product.id" :product="product"/>
   </div>
 </template>
 
@@ -21,7 +17,15 @@ export default {
     return {};
   },
 
-  mounted() {},
+  computed: {
+    products(){
+        return this.$store.state.products;
+    }
+  },
+
+  created() {
+    this.$store.dispatch("getProducts");
+  },
 
   methods: {},
 };
