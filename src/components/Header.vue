@@ -25,7 +25,7 @@
               class="btn btn-primary dropdown-toggle"
               data-toggle="dropdown"
             >
-              0 Carts
+              {{cartNumber}} Carts
             </button>
             <div @click="$event.stopPropagation()">
                 <mini-cart/>
@@ -44,6 +44,11 @@ export default {
   name: "Header",
   components: {
     MiniCart
+  },
+  computed: {
+    cartNumber() {
+      return this.$store.getters.cartNumber
+    }
   },
 
   data() {

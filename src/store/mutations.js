@@ -3,14 +3,27 @@ export const SET_PRODUCTS = (state, payload) => {
 }
 
 export const SET_PRODUCT = (state, payload) => {
-    state.product = payload
+        state.product = payload
+    }
+    //Adding product to cart 
+export const SET_ADDTOCART = (state, { product, quantity }) => {
+        const index = state.cart.findIndex(item => item.product.id === product.id)
+        if (index > -1) {
+            state.cart[index].quantity += quantity;
+        } else {
+            state.cart.push({ product, quantity })
+        }
+    }
+    //removing product from cart
+export const REMOVE_ITEM = (state, id) => {
+        const index = state.cart.findIndex(item => item.id === id)
+        state.cart.splice(index, 1)
+    }
+    //clear cart
+export const CLEAR_CART = (state) => {
+    state.cart = []
 }
 
-export const SET_ADDTOCART = (state, { product, quantity }) => {
-    const index = state.cart.findIndex(item => item.product.id === product.id)
-    if (index > -1) {
-        state.cart[index].quantity += quantity;
-    } else {
-        state.cart.push({ product, quantity })
-    }
+export const SET_CART = (state, payload) => {
+    state.cart = payload
 }

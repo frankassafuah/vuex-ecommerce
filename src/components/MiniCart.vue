@@ -10,21 +10,23 @@
           </div>
           <div>
             <a href="#" class="badge badge-secondary text-decoration-none"
-              >remove</a
+              @click="removeItem(item.id)">remove</a
             >
           </div>
         </div>
         <hr />
       </div>
       <div class="d-flex justify-content-between">
-        <span>Total: $23</span>
-        <a href="#" class="text-decoration-none">Clear Cart</a>
+        <span>Total: ${{totalPrice}}</span>
+        <a href="#" class="text-decoration-none" @click="clearCart">Clear Cart</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "MiniCart",
 
@@ -32,13 +34,26 @@ export default {
     return {};
   },
   computed: {
+    ...mapGetters ({
+      totalPrice: "totalPrice"
+    }),
     cart() {
       return this.$store.state.cart;
-    },
+    }
   },
-  mounted() {},
+  //get cart from backend
+  created() {
+      return this.$store.dispatch("getCart");
+    },
 
-  methods: {},
+  methods: {
+    removeItem(id){
+      return this.$store.dispatch('removeItem', id)
+    },
+    clearCart(){
+      return this.$store.dispatch('clearCart')
+    }
+  },
 };
 </script>
 
