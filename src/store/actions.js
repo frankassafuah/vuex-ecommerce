@@ -15,11 +15,16 @@ export const getProduct = async({ commit }, payload) => {
     }
     //Adding Product to cart and backend
 export const addToCart = async({ commit }, { product, quantity }) => {
-        commit("SET_ADDTOCART", { product, quantity });
-        await axios.post("http://localhost:3000/cart", {
+        // commit("SET_ADDTOCART", { product, quantity });
+        const response = await axios.post("http://localhost:3000/cart", {
             product,
             quantity
         })
+
+        if (response) {
+            commit('SET_ADDTOCART', response.data) //id, product, quatity
+        }
+
     }
     //removing product from cart and backend
 export const removeItem = async({ commit }, id) => {
@@ -27,8 +32,9 @@ export const removeItem = async({ commit }, id) => {
         await axios.delete(`http://localhost:3000/cart/${id}`)
     }
     //clear cart
-export const clearCart = ({ commit }) => {
+export const clearCart = async({ commit }) => {
         commit('CLEAR_CART')
+        await axios.delete("http://localhost:3000/cart")
     }
     //get cart from backend
 export const getCart = async({ commit }) => {

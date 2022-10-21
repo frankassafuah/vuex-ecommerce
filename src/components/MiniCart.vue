@@ -34,24 +34,24 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters ({
-      totalPrice: "totalPrice"
-    }),
+    ...mapGetters ([
+      "totalPrice"
+  ]),
     cart() {
       return this.$store.state.cart;
     }
   },
   //get cart from backend
   created() {
-      return this.$store.dispatch("getCart");
+      this.$store.dispatch("getCart");
     },
 
   methods: {
     removeItem(id){
-      return this.$store.dispatch('removeItem', id)
+      this.$store.dispatch('removeItem', id)
     },
     clearCart(){
-      return this.$store.dispatch('clearCart')
+      this.$store.dispatch('clearCart')
     }
   },
 };
